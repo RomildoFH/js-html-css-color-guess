@@ -6,6 +6,8 @@ let btnResetGame = document.getElementById('reset-game');
 let colorsQuant = 6;
 let score = document.getElementById('score');
 let acertos = 0;
+let wrong = document.getElementById('wrong');
+let erros = 0;
 
 //Requisito 1 - Adicione no seu site um título com o nome do seu jogo
 //Realizado através do html
@@ -56,6 +58,8 @@ function selecionaCor () {
             score.innerHTML = acertos;
         } else {
             document.querySelector('#answer').innerHTML = 'Errou! Tente novamente!';
+            erros -= 3;
+            wrong.innerHTML = erros;
         }        
     });
 }
