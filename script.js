@@ -3,13 +3,14 @@ let questionContainer = document.getElementsByClassName('container question');
 let textQuestion = document.getElementById('rgb-color');
 let arrayColors = [];
 let btnResetGame = document.getElementById('reset-game');
-
-//Criando cores
 let colorsQuant = 6;
 
-for (let index = 1; index <= 6; index ++) {
-    let colorRandom = 'rgb(' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ')';
-    arrayColors.push(colorRandom);
+//Criando cores
+function criandoCores () {
+    for (let index = 1; index <= colorsQuant; index ++) {
+        let colorRandom = 'rgb(' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ')';
+        arrayColors.push(colorRandom);
+    }
 }
 
 //Requisito 2 - Criando texto cor
@@ -18,7 +19,7 @@ function creatQuestion () {
     let corSelecionada = arrayColors[index];
     textQuestion.innerHTML = corSelecionada;
 }
-creatQuestion ();
+// creatQuestion ();
 
 //Requisito 3 - Adicione à página opções de cores para serem adivinhadas
 function criarCirculos () {
@@ -33,7 +34,7 @@ function criarCirculos () {
         circulo.style.backgroundColor = arrayColors[index];
    }
 }
-criarCirculos ()
+// criarCirculos ();
 
 //Alterando o texto conforme cor é selecionada e testo resposta
 function selecionaCor () {    
@@ -54,10 +55,33 @@ selecionaCor ();
 
 //Criando botão reset game
 
-const refreshPage = () => {
-    location.reload();
-  }
+// const refreshPage = () => {
+//     location.reload();
+//   }
   
-  btnResetGame.addEventListener('click', refreshPage)
+function gerandoNovasCores () {
+    for (let index = 0; index < arrayColors.length; index ++) {
+        let colorRandom = 'rgb(' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ')';
+        arrayColors[index] = colorRandom;
+    }
+    //Gerando novo rgb-color
+    let index = Math.floor((Math.random() * colorsQuant - 1) + 1)
+    let corSelecionada = arrayColors[index];
+    textQuestion.innerHTML = corSelecionada;
+    //Gerando novos circulos backgroundColors
+    for (let index = 0; index < arrayColors.length; index ++) {
+        let circulos = document.getElementsByClassName('ball');
+        let circulo = circulos[index];
+        circulo.style.backgroundColor = arrayColors[index];
+    }
+    document.querySelector('#answer').innerHTML = 'Escolha uma cor';
+}
+
+btnResetGame.addEventListener('click', gerandoNovasCores);
 
 
+window.onload = function () {
+    criandoCores ();
+    creatQuestion ();
+    criarCirculos ();
+}
