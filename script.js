@@ -2,6 +2,7 @@ let colorPalette = document.querySelector('#color-palette');
 let questionContainer = document.getElementsByClassName('container question');
 let textQuestion = document.getElementById('rgb-color');
 let arrayColors = [];
+let btnResetGame = document.getElementById('reset-game');
 
 //Criando cores
 let colorsQuant = 6;
@@ -20,7 +21,6 @@ function creatQuestion () {
 creatQuestion ();
 
 //Requisito 3 - Adicione à página opções de cores para serem adivinhadas
-
 function criarCirculos () {
     for (let index = 0; index < arrayColors.length; index ++) {
         let circulos = document.createElement('div');
@@ -36,7 +36,6 @@ function criarCirculos () {
 criarCirculos ()
 
 //Alterando o texto conforme cor é selecionada e testo resposta
-
 function selecionaCor () {    
     colorPalette.addEventListener('click', function (event) {        
         let colorSelected = document.querySelectorAll('.selected');
@@ -52,4 +51,13 @@ function selecionaCor () {
     });
 }
 selecionaCor ();
+
+//Criando botão reset game
+
+const refreshPage = () => {
+    location.reload();
+  }
+  
+  btnResetGame.addEventListener('click', refreshPage)
+
 
