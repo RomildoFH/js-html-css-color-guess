@@ -4,6 +4,11 @@ let textQuestion = document.getElementById('rgb-color');
 let arrayColors = [];
 let btnResetGame = document.getElementById('reset-game');
 let colorsQuant = 6;
+let score = document.getElementById('score');
+let acertos = 0;
+
+//Requisito 1 - Adicione no seu site um título com o nome do seu jogo
+//Realizado através do html
 
 //Criando cores
 function criandoCores () {
@@ -36,9 +41,10 @@ function criarCirculos () {
 }
 // criarCirculos ();
 
-//Alterando o texto conforme cor é selecionada e testo resposta
+//4 - Adicione cores aos círculos, que devem ser geradas dinamicamente
+//5 - Ao clicar em um círculo colorido, deve ser mostrado um texto indicando se está correto
 function selecionaCor () {    
-    colorPalette.addEventListener('click', function (event) {        
+    colorPalette.addEventListener('click', function (event) {
         let colorSelected = document.querySelectorAll('.selected');
         for (index = 0; index < colorSelected.length; index ++) {
         colorSelected[index].classList.remove('selected')
@@ -46,6 +52,8 @@ function selecionaCor () {
         event.target.classList.add('selected');
         if (event.target.style.backgroundColor === textQuestion.innerHTML) {
             document.querySelector('#answer').innerHTML = 'Acertou!';
+            acertos += 3;
+            score.innerHTML = acertos;
         } else {
             document.querySelector('#answer').innerHTML = 'Errou! Tente novamente!';
         }        
@@ -53,12 +61,8 @@ function selecionaCor () {
 }
 selecionaCor ();
 
-//Criando botão reset game
+//Requisito 6 - Crie um botão para iniciar/reiniciar o jogo
 
-// const refreshPage = () => {
-//     location.reload();
-//   }
-  
 function gerandoNovasCores () {
     for (let index = 0; index < arrayColors.length; index ++) {
         let colorRandom = 'rgb(' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ', ' + Math.floor((Math.random() * 255) + 1) + ')';
@@ -76,7 +80,6 @@ function gerandoNovasCores () {
     }
     document.querySelector('#answer').innerHTML = 'Escolha uma cor';
 }
-
 btnResetGame.addEventListener('click', gerandoNovasCores);
 
 
