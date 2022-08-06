@@ -35,3 +35,21 @@ function criarCirculos () {
 }
 criarCirculos ()
 
+//Alterando o texto conforme cor é selecionada e testo resposta
+
+function selecionaCor () {    
+    colorPalette.addEventListener('click', function (event) {        
+        let colorSelected = document.querySelectorAll('.selected');
+        for (index = 0; index < colorSelected.length; index ++) {
+        colorSelected[index].classList.remove('selected')
+        };
+        event.target.classList.add('selected');
+        if (event.target.style.backgroundColor === textQuestion.innerHTML) {
+            document.querySelector('#answer').innerHTML = 'Acertou!';
+        } else {
+            document.querySelector('#answer').innerHTML = 'Errou! Tente novamente!';
+        }        
+    });
+}
+selecionaCor ();
+
